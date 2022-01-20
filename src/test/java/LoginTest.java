@@ -8,10 +8,10 @@ import static com.codeborne.selenide.Selenide.open;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void Login(){
+    public void Login() {
         open("/login");
-        $("#inputEmail").sendKeys("fainka18@gmail.com");
-        $(By.xpath("//*[@id='inputPassword']")).setValue("kawasakizx636c1").submit();
+        $("#inputEmail").sendKeys(email);
+        $(By.xpath("//*[@id='inputPassword']")).setValue(password).submit();
         $(By.id("createButton")).shouldBe(Condition.visible);
     }
 }

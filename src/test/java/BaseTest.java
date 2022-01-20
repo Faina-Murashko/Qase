@@ -13,7 +13,7 @@ public class BaseTest {
     @BeforeClass
     public void setUp() {
         Configuration.headless = true;
-        Configuration.baseUrl = System.getenv().getOrDefault("QASE_URL", PropertyReader.getProperty("qase_url"));//"https://app.qase.io";
+        Configuration.baseUrl = System.getenv().getOrDefault("QASE_URL", PropertyReader.getProperty("qase_url"));
 
         email = System.getenv().getOrDefault("QASE_EMAIL", PropertyReader.getProperty("qase_email"));
         password = System.getenv().getOrDefault("QASE_PASSWORD", PropertyReader.getProperty("qase_password"));
