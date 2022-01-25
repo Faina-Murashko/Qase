@@ -11,10 +11,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 @Log4j2
-public class LoginTest extends BaseTest {
-    @Step("Open main page and log in")
-    @Test(description = "Login in qase.io")
-    public void Login() {
+
+public class CheckProject extends LoginTest {
+
+    @Test(description = "opened peg when we created new project")
+    @Step("Enter information about our project")
+    public void projectShouldBeCreated() {
         log.info("login with valid user details");
         LoginPage.openLoginPage()
                 .inputEmail()
@@ -25,7 +27,19 @@ public class LoginTest extends BaseTest {
 
 
 
+        log.info("input information about project");
+        projectPage
+                .clickOnCreateButtonCase()
+                .inputName()
+                .inputCode()
+                .inputDescription()
+                .inputType()
+                .checkButtonCreate()
+                .buttonCaseShouldBeVisible();
+        log.info("checking that the desired page has opened ");
+
+
+
 
     }
 }
-

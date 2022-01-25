@@ -1,37 +1,47 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import pages.CasePage;
+import pages.LoginPage;
+import pages.ProjectPage;
 import utils.PropertyReader;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class BaseTest {
-
-    String email, password;
-
+    WebDriver driver;
+    String titleText, setCode;
+    LoginPage loginPage;
+    ProjectPage projectPage;
+    CasePage casePage;
     @BeforeClass
     public void setUp() {
-        Configuration.headless = true;
-        Configuration.baseUrl = System.getenv().getOrDefault("QASE_URL", PropertyReader.getProperty("qase_url"));
+        loginPage = new LoginPage();
+        projectPage = new ProjectPage();
+        casePage = new CasePage();
 
-        email = System.getenv().getOrDefault("QASE_EMAIL", PropertyReader.getProperty("qase_email"));
-        password = System.getenv().getOrDefault("QASE_PASSWORD", PropertyReader.getProperty("qase_password"));
+
+
 
         Configuration.browser = "chrome";
+        //   Configuration.clickViaJs = true;
         Configuration.savePageSource = false;
-        Configuration.timeout = 1000;
+        Configuration.timeout = 10000;
 
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("headless");
-        Configuration.browserCapabilities = chromeOptions;
+        chromeOptions.addArguments("--start-maximized");
+        driver = new ChromeDriver(chromeOptions);
+
+
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         getWebDriver().quit();
     }
-
 }
