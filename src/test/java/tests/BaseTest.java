@@ -27,7 +27,6 @@ public class BaseTest {
 
 
 
-//        Configuration.headless = true;
 
         Configuration.browser = "chrome";
         //   Configuration.clickViaJs = true;
@@ -38,8 +37,7 @@ public class BaseTest {
         chromeOptions.addArguments("--start-maximized");
         driver = new ChromeDriver(chromeOptions);
 
-//        chromeOptions.addArguments("headless");
-//        Configuration.browserCapabilities = chromeOptions;
+
     }
 
     @AfterClass(alwaysRun = true)
